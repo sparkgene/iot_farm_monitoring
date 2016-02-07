@@ -7,8 +7,11 @@ sudo apt-get install build-essential python-dev
 
 cd /opt/
 sudo git clone https://github.com/sparkgene/iot_farm_monitoring.git
+sudo chown -R pi:pi iot_farm_monitoring
 cd /opt/iot_farm_monitoring
-npm install aws-iot-device-sdk
+
+sudo npm install npm -g
+sudo npm install aws-iot-device-sdk
 ```
 
 ### install Adfruit DHT library
@@ -21,8 +24,8 @@ cd  /opt/iot_farm_monitoring
 
 ### SORACOM Air script
 ```
-git clone https://gist.github.com/j3tm0t0/65367f971c3d770557f3 soracom
-mv soracom /opt/
-mv /opt/soracom/soracomair /etc/init.d/
-chmod 755 /etc/init.d/soracomair
+cd /opt/
+sudo git clone https://gist.github.com/j3tm0t0/65367f971c3d770557f3 sora
+sudo mv /opt/sora/soracomair /etc/init.d/
+sudo chmod 755 /etc/init.d/soracomair
 ```
