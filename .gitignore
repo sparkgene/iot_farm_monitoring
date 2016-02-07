@@ -1,0 +1,12 @@
+# python stuff
+__pycache__/
+*.py[cod]
+.Python
+*.egg
+*.log
+
+# node_modules
+node_modules/
+
+# certs
+certs/
