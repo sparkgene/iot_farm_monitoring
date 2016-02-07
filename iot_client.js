@@ -1,6 +1,15 @@
 var awsIot = require('aws-iot-device-sdk');
-var sys = require('sys')
-var exec = require('child_process').exec;
+var sys = require('sys');
+var fs = require('fs');
+
+var metric_file = "upload_data.csv"
+
+if (!fs.statSync(metric_file)) {
+  console.log("no data file");
+  process.exit();
+}
+
+var metrics = fs.readFileSync(metric_file);
 
 // Define paramerters to publish a message
 var device = awsIot.device({
@@ -13,15 +22,17 @@ var device = awsIot.device({
 
 // Connect to Message Broker
 device.on('connect', function() {
-    console.log('Connected to Message Broker.');
-
+    console.log('connected');
     var record = {
-        "message": "hello world!"
+        "metrics": metrics.toString()
     };
     // Serialize record to JSON format and publish a message
     var message = JSON.stringify(record);
     device.publish('pi_farm2/metrics', message, {}, function(){
       console.log("Publish: " + message);
-      process.exit();
+      setTimeout(function(){
+        console.log('close');
+        device.end();
+      },1000);
     });
 });
