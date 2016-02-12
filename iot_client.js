@@ -1,6 +1,7 @@
 var awsIot = require('aws-iot-device-sdk');
 var sys = require('sys');
 var fs = require('fs');
+var os = require("os");
 
 var metric_file = "upload_data.csv"
 
@@ -24,6 +25,7 @@ var device = awsIot.device({
 device.on('connect', function() {
     console.log('connected');
     var record = {
+        "device": os.hostname(),
         "metrics": metrics.toString()
     };
     // Serialize record to JSON format and publish a message
