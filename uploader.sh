@@ -1,28 +1,28 @@
-#!/bin/sh
+#!/bin/bash
 
 base_dir="/opt/iot_farm_monitoring"
 dup_cmd="/etc/init.d/soracomair"
-p=`ps ax | grep -v grep | grep "$dup_cmd" | wc -l`
+p=`ps ax | grep -v grep | grep "wvdial" | wc -l`
 
-if [ "$p" ];then
+if [ $p -gt 0 ];then
   $dup_cmd stop
 fi
 
 i=0
-while [ "$i" -gt "3" ]
+while [ $i -lt 3 ]
 do
   # dialup
   $dup_cmd start
-  sleep(3)
-  p=`ps ax | grep -v grep | grep "$dup_cmd" | wc -l`
+  sleep 5
+  p=`ps ax | grep -v grep | grep "wvdial" | wc -l`
   if ["$p" = "0"];then
-    $i=$1+1
+    ((i++))
   else
     break
   fi
 done
 
-if [ "$i" == "3" ];then
+if [ $i -gt 3 ];then
   # dialup faild
   exit 1
 fi
