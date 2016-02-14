@@ -19,7 +19,7 @@ class FarmCondition:
 
     def get_DHT11(self):
         try:
-            humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+            humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, 4)
             if humidity is not None:
                 self.humidity = "{0:0.1f}".format(humidity)
             if temperature is not None:
@@ -31,10 +31,8 @@ class FarmCondition:
     def get_GY30(self):
         try:
             bus = smbus.SMBus(1)
-            luxRead = bus.read_i2c_block_data(0x23,0x11)
-            lux = str((luxRead[1] + (256 * luxRead[0])) / 1.2)
-            lux = decimal.Decimal(lux).quantize(decimal.Decimal('.01'), rounding=decimal.ROUND_UP)
-            self.lux  = str(lux)
+            data = bus.read_i2c_block_data(0x23,0x11)
+            self.lux = str((data[0] << 8 | data[1]))
         except:
             pass
 
