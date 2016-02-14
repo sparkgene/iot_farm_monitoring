@@ -39,23 +39,27 @@ def lambda_handler(event, context):
         if len(items) != 5:
             continue
 
-        response = client.put_metric_data(
-            Namespace='PI_FARM',
-            MetricData=get_metric_data('temperature', host_name, items[0], items[2], 'None')
-        )
-        response = client.put_metric_data(
-            Namespace='PI_FARM',
-            MetricData=get_metric_data('humidity', host_name, items[0], items[1], 'Percent')
-        )
-        response = client.put_metric_data(
-            Namespace='PI_FARM',
-            MetricData=get_metric_data('lux', host_name, items[0], items[3], 'None')
-        )
-        try:
+        if items[2] is not None:
             response = client.put_metric_data(
                 Namespace='PI_FARM',
-                MetricData=get_metric_data('moisture', host_name, items[0], round((float(items[4])/1023)*100, 2), 'Percent')
+                MetricData=get_metric_data('temperature', host_name, items[0], items[2], 'None')
             )
-        except:
-            logger.info("calculate faild: {0}".format(items[4]))
+        if items[1] is not None:
+            response = client.put_metric_data(
+                Namespace='PI_FARM',
+                MetricData=get_metric_data('humidity', host_name, items[0], items[1], 'Percent')
+            )
+        if items[3] is not None:
+            response = client.put_metric_data(
+                Namespace='PI_FARM',
+                MetricData=get_metric_data('lux', host_name, items[0], items[3], 'None')
+            )
+        if items[4] is not None:
+            try:
+                response = client.put_metric_data(
+                    Namespace='PI_FARM',
+                    MetricData=get_metric_data('moisture', host_name, items[0], round((float(items[4])/1023)*100, 2), 'Percent')
+                )
+            except:
+                logger.info("calculate faild: {0}".format(items[4]))
     return True
