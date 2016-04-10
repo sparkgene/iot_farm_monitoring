@@ -1,7 +1,7 @@
 var awsIot = require('aws-iot-device-sdk');
 var sys = require('sys');
 var fs = require('fs');
-var os = require("os");
+var os = require('os');
 
 var metric_file = "upload_data.csv"
 
