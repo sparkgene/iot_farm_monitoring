@@ -17,8 +17,8 @@ var device = awsIot.device({
     keyPath: '/opt/pi_farm/certs/private.pem',
     certPath: '/opt/pi_farm/certs/cert.pem',
     caPath: '/opt/pi_farm/certs/rootca.crt',
-    clientId: process.env.IOT_CLIENT_ID,
-    region: process.env.AWS_REGION
+    clientId: "pi_001",
+    region: 'ap-northeast-1'
 });
 
 // Connect to Message Broker
@@ -30,7 +30,7 @@ device.on('connect', function() {
     };
     // Serialize record to JSON format and publish a message
     var message = JSON.stringify(record);
-    device.publish(process.env.IOT_PRODUCT + '/metrics', message, {}, function(){
+    device.publish('pi_farm2/metrics', message, {}, function(){
       console.log("Publish: " + message);
       setTimeout(function(){
         console.log('close');
