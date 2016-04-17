@@ -1,5 +1,6 @@
 var awsIot = require('aws-iot-device-sdk');
 var fs = require('fs');
+var exec = require('child_process').exec;
 
 var version_file = "version"
 
@@ -32,18 +33,23 @@ thingShadows.on('status', function(thingName, stat, clientToken, stateObject) {
                  JSON.stringify(stateObject));
     if( stat == "accepted" ){
       console.log(stateObject.state.desired.source_version);
+      if (stateObject.state.desired.source_version != local_version){
+        console.log('update source');
+        exec('bash /opt/pi_farm/current/updater.sh', function(err, stdout, stderr){
+          if (err) { console.log(err); }
+          thingShadows.end();
+        });
+      }
+      else{
+        thingShadows.end();
+      }
+    }
+    else{
+      thingShadows.end();
     }
 });
 
-thingShadows.on('delta', function(thingName, stateObject) {
-    // check version
-    var remote_version = stateObject.state.source_version;
-    console.log('remote_version ' + remote_version);
-    console.log('received delta: ' + JSON.stringify(stateObject));
-    clientTokenUpdate = thingShadows.update('pi_farm2', {"state":{"reported": {"version": local_version}}});
-});
-
 thingShadows.on('timeout', function(thingName, clientToken) {
-     console.log('received timeout '+' on '+operation+': '+
-                 clientToken);
+    console.log('received timeout: '+clientToken);
+    thingShadows.end();
 });
