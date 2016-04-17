@@ -4,11 +4,11 @@ current_dir="${base_dir}/current"
 release_dir="${base_dir}/release"
 
 # check environment variables
-if [ ! -e ${current_dir}/environment_variables ]; then
+if [ ! -e ${base_dir}/environment_variables ]; then
   echo "no env file"
   exit 1
 fi
-source ${current_dir}/environment_variables
+source ${base_dir}/environment_variables
 
 new_source_dir=$(date +"%Y%m%d%H%M%S")
 

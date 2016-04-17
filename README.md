@@ -47,7 +47,7 @@ touch /opt/pi_farm/certs/rootca.pem # set root CA certificate
 
 ### environment variables file
 ```
-cp /opt/pi_farm/current/environment_variables.org /opt/pi_farm/current/environment_variables
+cp /opt/pi_farm/current/environment_variables.org /opt/pi_farm/environment_variables
 # edit the variables
 ```
 
