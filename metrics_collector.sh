@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/bin/sh
+base_dir="/opt/pi_farm"
+source_dir="${base_dir}/current"
+data_dir="${base_dir}/data/metrics"
 
-base_dir="/opt/iot_farm_monitoring"
-
-if [ ! -f /etc/passwd ]
+if [ ! -f $data_dir/metrics.csv ]
 then
-  touch $base_dir/metrics.csv
+  touch $data_dir/metrics.csv
 fi
 
-python $base_dir/collector.py >> $base_dir/metrics.csv
+python $source_dir/collector.py >> $data_dir/metrics.csv

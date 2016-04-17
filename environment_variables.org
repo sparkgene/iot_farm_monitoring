@@ -1,0 +1,5 @@
+S3_BUCKET=<S3 bucket to upload pictures>
+IOT_PRODUCT=pi_farm
+IOT_CLIENT_ID=pi2
+AWS_REGION=ap-northeast-1
+GIT_REPO=https://github.com/sparkgene/iot_farm_monitoring.git
