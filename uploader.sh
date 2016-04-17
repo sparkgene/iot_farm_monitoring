@@ -56,6 +56,11 @@ touch ${metrics_dir}/metrics.csv
 
 # send metrics data
 nodejs ${source_dir}/iot_client.js
+if [ ! 0 == $? ] ; then
+  # upload failed
+  echo "git clone failed"
+  exit 1
+fi
 
 # remove old data
 rm -f ${metrics_dir}/upload_data.csv

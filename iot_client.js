@@ -7,7 +7,7 @@ var metric_file = "/opt/pi_farm/data/metrics/upload_data.csv"
 
 if (!fs.statSync(metric_file)) {
   console.log("no data file");
-  process.exit();
+  process.exit(1);
 }
 
 var metrics = fs.readFileSync(metric_file);
@@ -35,6 +35,7 @@ device.on('connect', function() {
       setTimeout(function(){
         console.log('close');
         device.end();
+        process.exit();
       },1000);
     });
 });
