@@ -14,7 +14,7 @@ new_source_dir=$(date +"%Y%m%d%H%M%S")
 
 git clone ${GIT_REPO} ${release_dir}/${new_source_dir}
 echo $?
-if [ 0 == $? ] ; then
+if [ ! 0 == $? ] ; then
   # git clone failed
   echo "git clone failed"
   exit 1
