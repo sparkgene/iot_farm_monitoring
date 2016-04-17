@@ -36,7 +36,20 @@ thingShadows.on('status', function(thingName, stat, clientToken, stateObject) {
       if (stateObject.state.desired.source_version != local_version){
         console.log('update source');
         exec('bash /opt/pi_farm/current/updater.sh', function(err, stdout, stderr){
-          if (err) { console.log(err); }
+          if (err) {
+             console.log(err);
+          }
+          else{
+            thingShadows.update('pi_farm2',
+                {
+                  "state":{
+                    "reported": {
+                      "version":stateObject.state.desired.source_version
+                    }
+                  }
+                }
+            );
+          }
           thingShadows.end();
         });
       }
