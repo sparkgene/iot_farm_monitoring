@@ -16,6 +16,7 @@ git clone ${GIT_REPO} ${release_dir}/${new_source_dir}
 
 if [ 0 == $? ] ; then
   # git clone failed
+  echo "git clone failed"
   exit 1
 fi
 
