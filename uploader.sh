@@ -59,7 +59,7 @@ nodejs ${source_dir}/iot_client.js
 # remove old data
 rm -f ${data_dir}/upload_data.csv
 
-photo_dir="${data_dir}/photo/"
+photo_dir="${data_dir}/photos/"
 
 for img in `find $photo_dir -type f -name *.jpg`
 do
