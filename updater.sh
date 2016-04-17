@@ -10,16 +10,15 @@ if [ ! -e ${current_dir}/environment_variables ]; then
 fi
 source ${current_dir}/environment_variables
 
-cd ${base_dir}
-source_dir=$(date +"%Y%m%d%H%M%S")
+new_source_dir=$(date +"%Y%m%d%H%M%S")
 
-git clone ${GIT_REPO} ${source_dir}
+git clone ${GIT_REPO} ${release_dir}/${new_source_dir}
 
 if [ 0 == $? ] ; then
   # git clone failed
   exit 1
 fi
 
-ln -nfs ${release_dir}/${source_dir} ${current_dir}
+ln -nfs ${release_dir}/${new_source_dir} ${current_dir}
 
 exit 0
