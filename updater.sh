@@ -23,4 +23,10 @@ fi
 ln -s /opt/pi_farm/node_modules ${release_dir}/${new_source_dir}/node_modules
 ln -nfs ${release_dir}/${new_source_dir} ${current_dir}
 
+cnt=`ls $release_dir | wc -l`
+max_cnt=5
+if [ $cnt -gt $max_cnt ]; then
+  find /opt/pi_farm/release/ -maxdepth 1 -mindepth 1 | sort | head -$($cnt-$max_cnt) | xargs rm -rf
+fi
+
 exit 0
