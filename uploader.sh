@@ -58,7 +58,7 @@ touch ${metrics_dir}/metrics.csv
 nodejs ${source_dir}/iot_client.js
 if [ ! 0 == $? ] ; then
   # upload failed
-  echo "git clone failed"
+  echo "upload failed"
   exit 1
 fi
 

@@ -20,6 +20,7 @@ if [ ! 0 == $? ] ; then
   exit 1
 fi
 
+ln -s /opt/pi_farm/node_modules ${release_dir}/${new_source_dir}/node_modules
 ln -nfs ${release_dir}/${new_source_dir} ${current_dir}
 
 exit 0
