@@ -1,7 +1,7 @@
 #!/bin/bash
 base_dir="/opt/pi_farm"
 source_dir="${base_dir}/current"
-data_dir="${base_dir}/data/metrics"
+data_dir="${base_dir}/data"
 
 # check environment variables
 if [ ! -e ${base_dir}/environment_variables ]; then
@@ -50,14 +50,15 @@ if [ $i -gt 3 ];then
 fi
 
 # rename metrics data
-mv ${data_dir}/metrics.csv ${data_dir}/upload_data.csv
-touch ${data_dir}/metrics.csv
+metrics_dir = "${data_dir}/metrics"
+mv ${metrics_dir}/metrics.csv ${metrics_dir}/upload_data.csv
+touch ${metrics_dir}/metrics.csv
 
 # send metrics data
 nodejs ${source_dir}/iot_client.js
 
 # remove old data
-rm -f ${data_dir}/upload_data.csv
+rm -f ${metrics_dir}/upload_data.csv
 
 photo_dir="${data_dir}/photos/"
 

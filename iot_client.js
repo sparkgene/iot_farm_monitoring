@@ -3,7 +3,7 @@ var sys = require('sys');
 var fs = require('fs');
 var os = require('os');
 
-var metric_file = "upload_data.csv"
+var metric_file = "/opt/pi_farm/data/metrics/upload_data.csv"
 
 if (!fs.statSync(metric_file)) {
   console.log("no data file");
