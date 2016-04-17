@@ -35,7 +35,6 @@ device.on('connect', function() {
       setTimeout(function(){
         console.log('close');
         device.end();
-        process.exit();
       },1000);
     });
 });
