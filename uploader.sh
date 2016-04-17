@@ -4,10 +4,10 @@ source_dir="${base_dir}/current"
 data_dir="${base_dir}/data/metrics"
 
 # check environment variables
-if [ ! -e ${base_dir}/environment_variables ]; then
+if [ ! -e ${source_dir}/environment_variables ]; then
   echo "no env file"
 fi
-source ${base_dir}/environment_variables
+source ${source_dir}/environment_variables
 
 if [ -z "${S3_BUCKET+x}" ] ; then
   echo "environment variable S3_BUCKET is requierd"
