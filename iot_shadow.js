@@ -14,8 +14,8 @@ var thingShadows = awsIot.thingShadow({
   keyPath: '/opt/pi_farm/certs/private.pem',
   certPath: '/opt/pi_farm/certs/cert.pem',
   caPath: '/opt/pi_farm/certs/rootca.crt',
-  clientId: process.env.IOT_CLIENT_ID,
-  region: process.env.AWS_REGION
+  clientId: "pi_001",
+  region: 'ap-northeast-1'
 });
 
 var clientTokenGet, clientTokenUpdate;
@@ -36,7 +36,7 @@ thingShadows.on('delta', function(thingName, stateObject) {
     // check version
     var version = stateObject.state.version;
     console.log('received delta: ' + JSON.stringify(stateObject));
-    clientTokenUpdate = thingShadows.update('LedFlash', {"state":{"reported": {"flash": state}}});
+    clientTokenUpdate = thingShadows.update('pi/farm2', {"state":{"reported": {"version": version}}});
 });
 
 thingShadows.on('timeout', function(thingName, clientToken) {
