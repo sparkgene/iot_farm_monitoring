@@ -1,7 +1,7 @@
 ## Installation
 
 ### update package and
-```
+  ```
 sudo apt-get update
 sudo apt-get install build-essential python-dev
 

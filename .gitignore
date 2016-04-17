@@ -11,5 +11,5 @@ node_modules/
 # certs
 certs/
 
-metrics.csv
-upload_data.csv
+*.csv
+environment_variables

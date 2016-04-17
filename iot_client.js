@@ -1,23 +1,23 @@
 var awsIot = require('aws-iot-device-sdk');
 var sys = require('sys');
 var fs = require('fs');
-var os = require("os");
+var os = require('os');
 
-var metric_file = "upload_data.csv"
+var metric_file = "/opt/pi_farm/data/metrics/upload_data.csv"
 
 if (!fs.statSync(metric_file)) {
   console.log("no data file");
-  process.exit();
+  process.exit(1);
 }
 
 var metrics = fs.readFileSync(metric_file);
 
 // Define paramerters to publish a message
 var device = awsIot.device({
-    keyPath: './certs/private.pem',
-    certPath: './certs/cert.pem',
-    caPath: './certs/rootca.crt',
-    clientId: 'pi_farm2',
+    keyPath: '/opt/pi_farm/certs/private.pem',
+    certPath: '/opt/pi_farm/certs/cert.pem',
+    caPath: '/opt/pi_farm/certs/rootca.crt',
+    clientId: "pi_001",
     region: 'ap-northeast-1'
 });
 
