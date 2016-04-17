@@ -1,3 +1,12 @@
+## Overview
+This is a sample project for monitoring farm.
+Using Raspberry Pi for the gateway.
+
+Raspberry Pi collect metrics from following sensors.
+- DHT11 (Humidity & Temperature sensor)
+- GY30/BH1750FVI (Digital Light intensity detection module)
+- YL-69 (soil moisture sensors)
+
 ## Installation
 
 ### update package
@@ -42,7 +51,7 @@ sudo chmod 755 /etc/init.d/soracomair
 mkdir /opt/pi_farm/certs
 touch /opt/pi_farm/certs/private.pem # set your private key
 touch /opt/pi_farm/certs/cert.pem # set your certificate
-wget  https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem -O /opt/pi_farm/certs/rootca.pem 
+wget  https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem -O /opt/pi_farm/certs/rootca.pem
 ```
 
 ### environment variables file

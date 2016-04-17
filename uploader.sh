@@ -1,4 +1,6 @@
 #!/bin/bash
+# upload metrics and photos.
+# this script check updates by AWS IoT shadow and replace source if the new source version is arrived
 base_dir="/opt/pi_farm"
 source_dir="${base_dir}/current"
 data_dir="${base_dir}/data"
@@ -76,6 +78,13 @@ do
   d=`echo $fname | cut -d "-" -f3`
   aws s3 cp $img s3://${S3_BUCKET}/${y}/${m}/${d}/$fname
 done
+
+# check source updates
+nodejs ${source_dir}/iot_shadow.js
+if [ ! 0 == $? ] ; then
+  # update failed
+  echo "update failed"
+fi
 
 # close dialup
 $dup_cmd stop
