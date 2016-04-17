@@ -31,7 +31,7 @@ thingShadows.on('status', function(thingName, stat, clientToken, stateObject) {
     console.log('status received '+stat+' on '+thingName+': '+
                  JSON.stringify(stateObject));
     if( stat == "accepted" ){
-      cpnsole.log(stateObject.state.source_version);
+      console.log(stateObject.state.desired.source_version);
     }
 });
 
