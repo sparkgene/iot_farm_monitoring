@@ -4,10 +4,10 @@ current_dir="${base_dir}/current"
 release_dir="${base_dir}/release"
 
 # check environment variables
-if [ ! -e ${base_dir}/environment_variables ]; then
+if [ ! -e ${current_dir}/environment_variables ]; then
   echo "no env file"
 fi
-source ${base_dir}/environment_variables
+source ${current_dir}/environment_variables
 
 cd ${base_dir}
 source_dir=$(date +"%Y%m%d%H%M%S")
@@ -19,6 +19,6 @@ if [ 0 == $? ] ; then
   exit 1
 fi
 
-ln -nfs ${release_dir}${source_dir} ${current_dir}
+ln -nfs ${release_dir}/${source_dir} ${current_dir}
 
 exit 0
