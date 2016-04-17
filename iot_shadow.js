@@ -21,14 +21,14 @@ var thingShadows = awsIot.thingShadow({
 var clientTokenGet, clientTokenUpdate;
 
 thingShadows.on('connect', function() {
-    thingShadows.register( 'version' );
+    thingShadows.register( 'pi_farm2' );
     setTimeout( function() {
        clientTokenGet = thingShadows.get('version');
     }, 2000 );
 });
 
 thingShadows.on('status', function(thingName, stat, clientToken, stateObject) {
-    console.log('received '+stat+' on '+thingName+': '+
+    console.log('status received '+stat+' on '+thingName+': '+
                  JSON.stringify(stateObject));
 });
 
