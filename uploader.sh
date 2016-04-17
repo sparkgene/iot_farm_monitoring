@@ -50,7 +50,7 @@ if [ $i -gt 3 ];then
 fi
 
 # rename metrics data
-metrics_dir = "${data_dir}/metrics"
+metrics_dir="${data_dir}/metrics"
 mv ${metrics_dir}/metrics.csv ${metrics_dir}/upload_data.csv
 touch ${metrics_dir}/metrics.csv
 
