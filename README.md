@@ -10,11 +10,11 @@ sudo apt-get install build-essential python-dev
 ```
 sudo su
 mkdir -p /opt/pi_farm/release
-git clone https://github.com/sparkgene/iot_farm_monitoring.git /opt/pi_farm/release/$(date +"%Y%m%d%H%M%S")
+git clone https://github.com/sparkgene/iot_farm_monitoring.git /opt/pi_farm/release/20160417000000
 
 mkdir -p /opt/pi_farm/node_modules
 ln -s /opt/pi_farm/node_modules /opt/pi_farm/release/first/node_modules
-ln -s /opt/pi_farm/release/first /opt/pi_farm/current
+ln -s /opt/pi_farm/release/20160417000000 /opt/pi_farm/current
 
 cd /opt/pi_farm/current
 npm install npm -g
@@ -42,7 +42,7 @@ sudo chmod 755 /etc/init.d/soracomair
 mkdir /opt/pi_farm/certs
 touch /opt/pi_farm/certs/private.pem # set your private key
 touch /opt/pi_farm/certs/cert.pem # set your certificate
-touch /opt/pi_farm/certs/rootca.pem # set root CA certificate
+wget  https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem -O /opt/pi_farm/certs/rootca.pem 
 ```
 
 ### environment variables file

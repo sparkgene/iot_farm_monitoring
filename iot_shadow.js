@@ -8,7 +8,7 @@ if (!fs.statSync(version_file)) {
   process.exit();
 }
 
-var version = fs.readFileSync(version_file);
+var local_version = fs.readFileSync(version_file);
 
 var thingShadows = awsIot.thingShadow({
   keyPath: '/opt/pi_farm/certs/private.pem',
@@ -23,20 +23,24 @@ var clientTokenGet, clientTokenUpdate;
 thingShadows.on('connect', function() {
     thingShadows.register( 'pi_farm2' );
     setTimeout( function() {
-       clientTokenGet = thingShadows.get('version');
-    }, 2000 );
+       clientTokenGet = thingShadows.get('pi_farm2');
+    }, 1000 );
 });
 
 thingShadows.on('status', function(thingName, stat, clientToken, stateObject) {
     console.log('status received '+stat+' on '+thingName+': '+
                  JSON.stringify(stateObject));
+    if( stat == "accepted" ){
+      cpnsole.log(stateObject.state.source_version);
+    }
 });
 
 thingShadows.on('delta', function(thingName, stateObject) {
     // check version
-    var version = stateObject.state.version;
+    var remote_version = stateObject.state.source_version;
+    console.log('remote_version ' + remote_version);
     console.log('received delta: ' + JSON.stringify(stateObject));
-    clientTokenUpdate = thingShadows.update('pi/farm2', {"state":{"reported": {"version": version}}});
+    clientTokenUpdate = thingShadows.update('pi_farm2', {"state":{"reported": {"version": local_version}}});
 });
 
 thingShadows.on('timeout', function(thingName, clientToken) {
