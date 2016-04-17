@@ -46,7 +46,7 @@ do
   fi
 done
 
-if [ $i -gt 3 ];then
+if [ "$i" == "3" ];then
   # dialup faild
   exit 1
 fi
