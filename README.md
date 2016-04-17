@@ -17,8 +17,8 @@ ln -s /opt/pi_farm/node_modules /opt/pi_farm/release/first/node_modules
 ln -s /opt/pi_farm/release/first /opt/pi_farm/current
 
 cd /opt/pi_farm/current
-sudo npm install npm -g
-sudo npm install aws-iot-device-sdk
+npm install npm -g
+npm install aws-iot-device-sdk
 ```
 
 ### install Adfruit DHT library
@@ -54,4 +54,10 @@ cp /opt/pi_farm/current/environment_variables.org /opt/pi_farm/current/environme
 ### setup cron
 ```
 crontab /opt/pi_farm/current/crontab
+```
+
+### data directories
+```
+mkdir -p /opt/pi_farm/data/metrics
+mkdir -p /opt/pi_farm/data/photos
 ```

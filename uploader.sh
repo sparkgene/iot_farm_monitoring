@@ -6,17 +6,21 @@ data_dir="${base_dir}/data/metrics"
 # check environment variables
 if [ ! -e ${source_dir}/environment_variables ]; then
   echo "no env file"
+  exit 1
 fi
 source ${source_dir}/environment_variables
 
 if [ -z "${S3_BUCKET+x}" ] ; then
   echo "environment variable S3_BUCKET is requierd"
+  exit 1
 fi
 if [ -z "${IOT_CLIENT_ID+x}" ] ; then
   echo "environment variable IOT_CLIENT_ID is requierd"
+  exit 1
 fi
 if [ -z "${AWS_REGION+x}" ] ; then
   echo "environment variable AWS_REGION is requierd"
+  exit 1
 fi
 
 dup_cmd="/etc/init.d/soracomair"

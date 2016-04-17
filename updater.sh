@@ -6,6 +6,7 @@ release_dir="${base_dir}/release"
 # check environment variables
 if [ ! -e ${current_dir}/environment_variables ]; then
   echo "no env file"
+  exit 1
 fi
 source ${current_dir}/environment_variables
 
