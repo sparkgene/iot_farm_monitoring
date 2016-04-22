@@ -70,7 +70,7 @@ rm -f ${metrics_dir}/upload_data.csv &> /dev/null
 
 photo_dir="${data_dir}/photos/"
 
-for img in `find $photo_dir -type f -name *.jpg`
+for img in `find $photo_dir -type f -name "*.jpg"`
 do
   fname=`basename $img`
   y=`echo $fname | cut -d "-" -f1`
