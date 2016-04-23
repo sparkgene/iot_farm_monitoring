@@ -44,7 +44,7 @@ thingShadows.on('status', function(thingName, stat, clientToken, stateObject) {
                 {
                   "state":{
                     "reported": {
-                      "version":stateObject.state.desired.source_version
+                      "source_version":stateObject.state.desired.source_version
                     }
                   }
                 }
