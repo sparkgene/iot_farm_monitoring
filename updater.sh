@@ -32,4 +32,7 @@ if [ $cnt -gt $max_cnt ]; then
   find /opt/pi_farm/release/ -maxdepth 1 -mindepth 1 | sort | head -$(($cnt-$max_cnt)) | xargs rm -rf
 fi
 
+# update cron
+crontab ${release_dir}/${new_source_dir}/crontab
+
 exit 0
