@@ -78,6 +78,7 @@ do
   d=`echo $fname | cut -d "-" -f3`
   echo "upload to s3://${S3_BUCKET}/${y}/${m}/${d}/$fname"
   aws s3 cp $img s3://${S3_BUCKET}/${y}/${m}/${d}/$fname &> /dev/null
+  rm -f $img &> /dev/null
 done
 
 # check source updates
