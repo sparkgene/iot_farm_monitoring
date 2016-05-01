@@ -77,7 +77,7 @@ do
   m=`echo $fname | cut -d "-" -f2`
   d=`echo $fname | cut -d "-" -f3`
   echo "upload to s3://${S3_BUCKET}/${y}/${m}/${d}/$fname"
-  aws s3 cp $img s3://${S3_BUCKET}/${y}/${m}/${d}/$fname &> /dev/null
+  aws s3 cp $img s3://${S3_BUCKET}/${y}/${m}/${d}/$fname --acl public-read &> /dev/null
   rm -f $img &> /dev/null
 done
 
