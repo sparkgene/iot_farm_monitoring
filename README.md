@@ -6,7 +6,7 @@ In addition, regularly shoot the field, and upload images to S3 to the bucket.
 ![graph screenshot](https://raw.githubusercontent.com/sparkgene/iot_farm_monitoring/master/pi_farm_graph.png)
 
 ## Raspberry Pi
-![graph screenshot](https://raw.githubusercontent.com/sparkgene/iot_farm_monitoring/pi_farm_breadboard.png)
+![graph screenshot](https://raw.githubusercontent.com/sparkgene/iot_farm_monitoring/master/pi_farm_breadboard.png)
 
 ## Installation
 
