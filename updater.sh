@@ -23,7 +23,6 @@ fi
 # link to new source
 ln -s /opt/pi_farm/node_modules ${release_dir}/${new_source_dir}/node_modules
 ln -nfs ${release_dir}/${new_source_dir} ${current_dir}
-crontab ${release_dir}/${new_source_dir}/crontab
 
 # clean up old files
 cnt=`ls $release_dir | wc -l`
