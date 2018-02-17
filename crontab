@@ -1,8 +1,11 @@
 # collect metrics
-*/5 * * * * cd /opt/pi_farm/current && bash metrics_collector.sh &> /dev/null
+#*/5 * * * * cd /opt/pi_farm/current && bash metrics_collector.sh &> /dev/null
+*/1 * * * * cd /opt/pi_farm/current && bash metrics_collector.sh >> /var/log/pi_farm/collector.log
 
 # take picture
-8 3-21 * * * cd /opt/pi_farm/current && bash take_picture.sh &> /dev/null
+#8 3-21 * * * cd /opt/pi_farm/current && bash take_picture.sh &> /dev/null
+*/5 3-21 * * * cd /opt/pi_farm/current && bash take_picture.sh >> /var/log/pi_farm/camera.log
 
 # upload datas
-2,22,42 * * * * cd /opt/pi_farm/current && bash uploader.sh &> /dev/null
+#2,22,42 * * * * cd /opt/pi_farm/current && bash uploader.sh &> /dev/null
+*/3 * * * * cd /opt/pi_farm/current && bash uploader.sh  >> /var/log/pi_farm/uploader.log
