@@ -5,6 +5,7 @@ base_dir="/opt/pi_farm"
 source_dir="${base_dir}/current"
 data_dir="${base_dir}/data"
 
+echo "start uploader"
 # check environment variables
 if [ ! -e ${base_dir}/environment_variables ]; then
   echo "no env file"
@@ -29,12 +30,14 @@ dup_cmd="/etc/init.d/soracomair"
 p=`ps ax | grep -v grep | grep "wvdial" | wc -l`
 
 if [ "$p" -gt "0" ];then
+  echo "stop existing modem"
   $dup_cmd stop
 fi
 
 i=0
 while [ "$i" -lt "3" ]
 do
+  echo "start connecting..${i}"
   # dialup
   $dup_cmd start
   sleep 3
@@ -48,6 +51,7 @@ done
 
 if [ "$i" == "3" ];then
   # dialup faild
+  echo "dialup faild"
   exit 1
 fi
 
@@ -60,7 +64,7 @@ touch ${metrics_dir}/metrics.csv
 nodejs ${source_dir}/iot_client.js
 if [ ! 0 == $? ] ; then
   # upload failed
-  echo "upload failed"
+  echo "upload failed. exit upload."
   $dup_cmd stop
   exit 1
 fi
@@ -89,5 +93,7 @@ if [ ! 0 == $? ] ; then
   echo "update failed"
 fi
 
+echo "closing uploader"
 # close dialup
 $dup_cmd stop
+echo "upload finished"

@@ -8,4 +8,7 @@ then
   touch $data_dir/metrics.csv
 fi
 
+echo "start collecting"
 python $source_dir/collector.py >> $data_dir/metrics.csv
+
+echo "metrics collected"
